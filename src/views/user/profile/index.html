@@ -1,0 +1,124 @@
+{{> user-leftnav profile-open=true}}
+<main
+  class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
+>
+  {{> user-topnav }}
+  <div class="container-fluid">
+    <div
+      class="page-header min-height-300 border-radius-xl mt-4"
+      style="
+        background-image: url('/assets/images/curved-images/curved0.jpg');
+        background-position-y: 50%;
+      "
+    >
+      <span class="mask bg-gradient-primary opacity-6"></span>
+    </div>
+    <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
+      <div class="row gx-4">
+        <div class="col-auto">
+          <div class="avatar avatar-xl position-relative">
+            <img
+              src="{{credentials.profile_img}}"
+              alt="profile_image"
+              class="w-100 border-radius-lg shadow-sm"
+            />
+          </div>
+        </div>
+        <div class="col-auto my-auto">
+          <div class="h-100">
+            <h5 class="mb-1">{{credentials.firstName}} {{credentials.middleName}} {{credentials.lastName}}</h5>
+            <p class="mb-0 font-weight-bold text-sm">{{credentials.scope}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid px-5 py-4">
+    <div class="card">
+      <div class="card-body">
+        <form method="POST" action="/user/profile/update">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-12 mb-3">
+                  {{#if newMessage}}
+                  <div class="alert alert-{{newAlertType}} alert-dismissible fade show m-0 rounded-0" role="alert">
+                    <strong>{{newMessage}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {{/if}}
+                </div>
+                <div class="col-12">
+                  <h3 class="mb-0">Edit profile </h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Email address (disabled) </label>
+                        <input type="text" class="form-control disable-input" value="{{credentials.email}}" disabled>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Phone number</label>
+                        <input type="number" name="phoneNumber" class="form-control" value="{{credentials.phoneNumber}}" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label">First name</label>
+                        <input type="text" name="firstame" class="form-control" value="{{credentials.firstName}}" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Middle name</label>
+                        <input type="text"  name="middleName" class="form-control" value="{{credentials.middleName}}">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Last name</label>
+                        <input type="text" name="lastName" class="form-control" value="{{credentials.lastName}}" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Birthday</label>
+                        <input type="date" name="birthday" class="form-control" value="{{credentials.birthday}}" required>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Gender</label>
+                        <select name="gender" class="form-control size14 borderRadius20 mt-1" style="width: 100%;" required>
+                          <option value="{{credentials.gender}}" selected hidden>{{credentials.gender}}</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label">Password</label>
+                          <input type="password" name="password" class="form-control" placeholder="Enter a password to change">
+                        </div>
+                      </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 text-right">
+                    <button type="submit"class="btn btn-primary">Update profile</button>
+                  </div>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
